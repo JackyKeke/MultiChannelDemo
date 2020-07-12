@@ -1,0 +1,209 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        applicationId "com.jackykeke.multichanneldemo"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+
+    sourceSets {
+        main {
+//  ---------------     此下仅为 eclipse 转 AS 项目的设置 千万不要随意打开  start---------
+//            manifest.srcFile 'AndroidManifest.xml'
+//            java.srcDirs = ['src']
+//            resources.srcDirs = ['src']
+//            aidl.srcDirs = ['src']
+//            renderscript.srcDirs = ['src']
+//            res.srcDirs = ['res']
+//            assets.srcDirs = ['assets']
+
+            // Move the tests to tests/java, tests/res, etc...
+//            instrumentTest.setRoot('tests')
+//            // Move the build types to build-types/<type>
+//            // For instance, build-types/debug/java, build-types/debug/AndroidManifest.xml, ...
+//            // This moves them out of them default location under src/<type>/... which would
+//            // conflict with src/ being used by the main source set.
+//            // Adding new build types or product flavors should be accompanied
+//            // by a similar customization.
+//            debug.setRoot('build-types/debug')
+//            release.setRoot('build-types/release')
+
+//  ---------------     此上仅为 eclipse 转 AS 项目的设置 千万不要随意打开  end---------
+
+
+        }
+    }
+
+//    signingConfigs模块的配置需要写在buildTypes模块之前
+//    signingConfigs模块里面不能出现debug之类的关键字
+//    buildTypes模块的配置需要写在productFlavors模块之前
+    signingConfigs {
+        sbGoogle {
+            keyAlias RELEASE_KEY_ALIAS
+            keyPassword RELEASE_KEY_PASSWORD
+            storeFile file(RELEASE_STORE_FILE)
+            storePassword RELEASE_STORE_PASSWORD
+        }
+    }
+
+
+    buildTypes {
+
+        debug {
+            applicationIdSuffix ".debug"
+            minifyEnabled false
+            zipAlignEnabled true
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            minifyEnabled true
+            zipAlignEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+//       可以debug 的 release版又称 preview版
+        preview {
+            applicationIdSuffix ".preview"
+            debuggable true // 保留debug信息
+            jniDebuggable true
+            minifyEnabled true
+            shrinkResources true
+            //matchingFallbacks 其他作用
+            //matchingFallbacks 不仅可以用于配置 productFlavors, 还可以配置 build type, 比如, 如果module B 有一个特殊的 build type, 然后 module A 中只有 debug 和 release 两种 build type, 会有同样类似的编译错误. 该问题依然可以通过 matchingFallbacks 指定 build type 类型来解决, 如 :
+            //
+            //    buildTypes {
+            //        releaseQA {
+            //            matchingFallbacks = ['release']
+            //        }
+            //    }
+            //
+            //作者：bangelua
+            //链接：https://www.jianshu.com/p/7e2d0e59a2bb
+            matchingFallbacks = ['release', 'debug']
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+    }
+
+    flavorDimensions "funfunzone"
+    productFlavors {
+        dev {
+//            applicationId "com.jackykeke.dev"
+            signingConfig signingConfigs.sbGoogle
+            dimension "funfunzone"
+            // 对resValue在java代码中的使用：String app_id = getResources().getString(R.string.app_id);
+            resValue("string", "app_name", "开发版")
+            resValue("string", "app_channel", "99")
+            buildConfigField  "String", "app_server", "\"http://www.dev.com\""
+            resValue "string", "build_time", buildTime()
+
+            // 对manifestPlaceholders中资源的使用：在AndroidManifest.xml文件中的application节点下
+            // andorid:icon="${icon}"
+            // android:label="${app_name}"
+            manifestPlaceholders = [app_name: "@string/app_name", icon: "@drawable/dev"]
+        }
+
+
+        xiaomiVersion {
+            applicationId "com.multichannel.xiaomi"
+            signingConfig signingConfigs.sbGoogle
+            dimension "funfunzone"
+            resValue("string", "app_name", "小米")
+            resValue("string", "app_channel", "101")
+            buildConfigField "String", "app_server", "\"http://www.xiaomi.com\""
+            resValue "string", "build_time", buildTime()
+            manifestPlaceholders = [app_name: "@string/app_name", icon: "@drawable/xiaomi"]
+        }
+
+        playVersion {
+            applicationId "com.multichannel.play"
+            signingConfig signingConfigs.sbGoogle
+            dimension "funfunzone"
+            resValue("string", "app_name", "谷歌")
+            resValue("string", "app_channel", "102")
+            buildConfigField  "String", "app_server", "\"http://www.google.com\""
+            resValue "string", "build_time", buildTime()
+            manifestPlaceholders = [app_name: "@string/app_name", icon: "@drawable/google"]
+        }
+
+//        //这里的flavor名如果是数字开头，必须用引号引起来。
+        qihu360 {
+            //360为不签名版
+            dimension "funfunzone"
+            resValue("string", "app_name", "360")
+            resValue "string", "build_time", buildTime()
+            manifestPlaceholders = [app_name: "@string/app_name", icon: "@drawable/dev"]
+        }
+
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+
+    //进行 除了debug和release之外的打包 譬如preview版 必须关闭 checkReleaseBuilds abortOnError
+    lintOptions {
+        disable 'InvalidPackage'
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+
+
+    // rename the apk with the version name
+    // add output file sub folder by build type
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            outputFileName = "MultiChannel-v${variant.versionName}-${variant.productFlavors[0].name}-${variant.buildType.name}.apk".toLowerCase()
+        }
+    }
+}
+
+
+//动态设置一些额外信息 跟服务器交流限制版本运作
+
+def buildTime() {
+    return new Date().format("yyyy-MM-dd HH:mm:ss")
+}
+
+//暂不用
+//def hostName() {
+//    return System.getProperty("user.name") + "@" + InetAddress.localHost.hostName
+//}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+
+
+    implementation Deps.appcompat
+    implementation Deps.constraintlayout
+    implementation Deps.recyclerview
+    testImplementation Deps.junit
+    androidTestImplementation Deps.ext_junit
+    androidTestImplementation Deps.espresso_core
+
+    implementation Deps.coordinatorlayout
+    implementation Deps.palette
+    implementation Deps.statusbarutil
+    implementation Deps.BaseRecyclerViewAdapterHelper
+
+    debugImplementation project(":xiaomi")
+    devImplementation project(":xiaomi")
+    xiaomiVersionImplementation project(":xiaomi")
+    playVersionImplementation project(":play")
+}

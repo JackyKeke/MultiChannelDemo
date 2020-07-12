@@ -1,0 +1,5 @@
+include ':play'
+include ':xiaomi'
+include ':base'
+include ':app'
+rootProject.name = "MultiChannelDemo"
