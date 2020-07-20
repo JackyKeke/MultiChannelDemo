@@ -4,13 +4,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:context=".MainActivity">
 
         <TextView
             android:id="@+id/tv_store_url"
@@ -61,20 +62,19 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_40" />
+            android:layout_height="100dp" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="JUMPING TO DIFFERENT LAYOUT "
-            android:onClick="different_layout"/>
+            android:text="Different product layout "
+            android:onClick="different_product_layout"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="JUMPING TO  DEBUGGING PAGE "
-            android:onClick="debugging_page"/>
-
+            android:text="Debug Activity"
+            android:onClick="debug_activity"/>
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

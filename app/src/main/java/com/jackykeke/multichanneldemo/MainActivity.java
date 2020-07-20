@@ -2,6 +2,7 @@ package com.jackykeke.multichanneldemo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -35,17 +36,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void different_layout(View view) {
-
-
-
+    public void different_product_layout(View view) {
+        startActivity(new Intent(this,DifferentActivity.class));
     }
 
-
-    public void debugging_page(View view) {
-
+    public void debug_activity(View view) {
 
     }
-
-
 }
