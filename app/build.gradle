@@ -97,12 +97,25 @@ android {
 
     }
 
-    flavorDimensions "funfunzone"
+    // 维度扩展文章  https://blog.csdn.net/user11223344abc/article/details/78784373
+    flavorDimensions("money", "channel")
+
     productFlavors {
+
+
+        vip {
+            dimension "money"
+        }
+
+        free{
+            dimension "money"
+        }
+
+
         dev {
 //            applicationId "com.jackykeke.dev"
             signingConfig signingConfigs.sbGoogle
-            dimension "funfunzone"
+            dimension "channel"
             // 对resValue在java代码中的使用：String app_id = getResources().getString(R.string.app_id);
             resValue("string", "app_name", "开发版")
             resValue("string", "app_channel", "99")
@@ -119,7 +132,7 @@ android {
         xiaomiVersion {
             applicationId "com.multichannel.xiaomi"
             signingConfig signingConfigs.sbGoogle
-            dimension "funfunzone"
+            dimension "channel"
             resValue("string", "app_name", "小米")
             resValue("string", "app_channel", "101")
             buildConfigField "String", "app_server", "\"http://www.xiaomi.com\""
@@ -130,7 +143,7 @@ android {
         playVersion {
             applicationId "com.multichannel.play"
             signingConfig signingConfigs.sbGoogle
-            dimension "funfunzone"
+            dimension "channel"
             resValue("string", "app_name", "谷歌")
             resValue("string", "app_channel", "102")
             buildConfigField  "String", "app_server", "\"http://www.google.com\""
@@ -141,7 +154,7 @@ android {
 //        //这里的flavor名如果是数字开头，必须用引号引起来。
         qihu360 {
             //360为不签名版
-            dimension "funfunzone"
+            dimension "channel"
             resValue("string", "app_name", "360")
             resValue "string", "build_time", buildTime()
             manifestPlaceholders = [app_name: "@string/app_name", icon: "@drawable/dev"]
