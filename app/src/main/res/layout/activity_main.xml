@@ -1,57 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/tv_store_url"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/dp_10"
-        android:text="Hello World!" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_store_url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_10"
+            android:text="Hello World!" />
 
 
-    <TextView
-        android:id="@+id/tv_user_policy"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/dp_10"
-        android:text="Hello World!" />
+        <TextView
+            android:id="@+id/tv_user_policy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_10"
+            android:text="Hello World!" />
 
 
-    <TextView
-        android:id="@+id/tv_privacy_policy"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/dp_10"
-        android:text="Hello World!" />
+        <TextView
+            android:id="@+id/tv_privacy_policy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_10"
+            android:text="Hello World!" />
 
 
-    <TextView
-        android:id="@+id/tv_advertise_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/dp_10"
-        android:text="Hello World!" />
+        <TextView
+            android:id="@+id/tv_advertise_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_10"
+            android:text="Hello World!" />
 
-    <TextView
-        android:id="@+id/tv_app_share_url"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/dp_10"
-        android:text="Hello World!" />
-
-
-    <TextView
-        android:id="@+id/tv_other"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/dp_10"
-        android:text="Hello World!" />
+        <TextView
+            android:id="@+id/tv_app_share_url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_10"
+            android:text="Hello World!" />
 
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/tv_other"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_10"
+            android:text="Hello World!" />
+
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_40" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="JUMPING TO DIFFERENT LAYOUT "
+            android:onClick="different_layout"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="JUMPING TO  DEBUGGING PAGE "
+            android:onClick="debugging_page"/>
+
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

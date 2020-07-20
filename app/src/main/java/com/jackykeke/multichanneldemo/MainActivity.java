@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.jackykeke.base.BaseModuleApp;
@@ -33,4 +34,18 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    public void different_layout(View view) {
+
+
+
+    }
+
+
+    public void debugging_page(View view) {
+
+
+    }
+
+
 }
