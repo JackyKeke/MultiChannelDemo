@@ -2,8 +2,10 @@ package com.jackykeke.multichanneldemo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.jackykeke.base.BaseModuleApp;
@@ -31,6 +33,14 @@ public class MainActivity extends AppCompatActivity {
 
         ((TextView) findViewById(R.id.tv_other)).setText(String.format("域名：   %s\n渠道号：    %s", BuildConfig.app_server, getResources().getString(R.string.app_channel)));
 
+
+    }
+
+    public void different_product_layout(View view) {
+        startActivity(new Intent(this,DifferentActivity.class));
+    }
+
+    public void debug_activity(View view) {
 
     }
 }
