@@ -8,8 +8,8 @@ android {
         applicationId "com.jackykeke.multichanneldemo"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        versionCode project.hasProperty('VERSION_CODE_PARA') ? Integer.parseInt(VERSION_CODE_PARA) : 1
+        versionName project.hasProperty("VERSION_NAME") ? /*project.*/VERSION_NAME : "1.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -107,7 +107,7 @@ android {
             dimension "money"
         }
 
-        free{
+        free {
             dimension "money"
         }
 
@@ -119,7 +119,7 @@ android {
             // 对resValue在java代码中的使用：String app_id = getResources().getString(R.string.app_id);
             resValue("string", "app_name", "开发版")
             resValue("string", "app_channel", "99")
-            buildConfigField  "String", "app_server", "\"http://www.dev.com\""
+            buildConfigField "String", "app_server", "\"http://www.dev.com\""
             resValue "string", "build_time", buildTime()
 
             // 对manifestPlaceholders中资源的使用：在AndroidManifest.xml文件中的application节点下
@@ -146,7 +146,7 @@ android {
             dimension "channel"
             resValue("string", "app_name", "谷歌")
             resValue("string", "app_channel", "102")
-            buildConfigField  "String", "app_server", "\"http://www.google.com\""
+            buildConfigField "String", "app_server", "\"http://www.google.com\""
             resValue "string", "build_time", buildTime()
             manifestPlaceholders = [app_name: "@string/app_name", icon: "@drawable/google"]
         }
