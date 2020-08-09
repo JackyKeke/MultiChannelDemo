@@ -18,8 +18,10 @@ Multi-Channel build sample（多渠道构建范例）
   }
 ````
 
+
 ## 不同渠道包的 buildTypes
 ### 主工程的 buildTypes
+
 ```groovy
  
  buildTypes {
@@ -60,12 +62,15 @@ Multi-Channel build sample（多渠道构建范例）
 
 ```
 
+
 ### 其他模块在打包的时候的 proguardFiles 必须用 consumerProguardFiles 替代
 否则就会主模块对子模块的混淆造成干扰
+
 ```groovy
    consumerProguardFiles "consumer-rules.pro"
 
 ```
+
 
 
 ### 主工程的 productFlavors 来了
