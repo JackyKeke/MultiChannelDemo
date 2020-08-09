@@ -2,9 +2,9 @@
 Multi-Channel build sample（多渠道构建范例）
 
 
-### 主工程代码拓展不同渠道包
+## 主工程代码拓展不同渠道包
 
-##### 主工程的 build.gradle
+### 主工程的 build.gradle
 ```` groovy
    
   各种的渠道包首先要写好 signingConfigs 并置于 buildTypes 和 productFlavors 之前 
@@ -18,8 +18,10 @@ Multi-Channel build sample（多渠道构建范例）
   }
 ````
 
-##### 不同渠道包的 buildTypes
-####### 主工程的 buildTypes
+
+## 不同渠道包的 buildTypes
+### 主工程的 buildTypes
+
 ```groovy
  
  buildTypes {
@@ -60,15 +62,18 @@ Multi-Channel build sample（多渠道构建范例）
 
 ```
 
-####### 其他模块在打包的时候的 proguardFiles 必须用 consumerProguardFiles 替代
-否则就会主工程对子模块的混淆造成干扰
+
+### 其他模块在打包的时候的 proguardFiles 必须用 consumerProguardFiles 替代
+否则就会主模块对子模块的混淆造成干扰
+
 ```groovy
    consumerProguardFiles "consumer-rules.pro"
 
 ```
 
 
-####### 主工程的 productFlavors 来了
+
+### 主工程的 productFlavors 来了
 ```groovy
 
  productFlavors {
@@ -107,7 +112,7 @@ Multi-Channel build sample（多渠道构建范例）
 
 ```
 
-####### 主工程引用子模块的资源 布局
+### 主工程引用子模块的资源 布局
 DifferentActivity
 ```java
         setContentView(R.layout.activity_different);
